@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block js %}
+
+{% endblock %}
+
+<div class="left">
+ {% include "nav.html" %}
+</div>
+
+{% block main %}
+<div class="from_top">
+    <div class="contentz">
+      <div class="row">
+            <div class="col-md-10">
+              <div class="top-ads">
+                {% include "top-ads.html"%}
+</div>
+        </div>
+      </div>
+      <div class="name">News</div>
+        <div class="row">
+            <div class="col-md-8">
+                <div>&nbsp;</div>
+              {% for new in news %}
+              <div class="row">
+                <div class="col-md-2">
+                  <a href="../news/{{new[1]}}"><img src="{{new[2]}}"/></a>
+                </div>
+                
+                <div class="col-md-10">
+                  <div class="news-body">
+                    <div class="news-title"><a href="../news/{{new[1]}}">{{new[4]}}</a></div>
+                  <p>June 14 2015 | <a style="text-decoration: underline;" href="../news/comments/{{new[1]}}">comments({{count_comments(new[1])}})</a><p>
+                    {{p.sub('', new[3])[:200]}}...
+                </div>
+              </div>
+                  </div>
+              {% endfor %}
+          </div>
+            <div class="col-md-4">
+              <div class="right-ads-squares">
+              {% include "ads-squares.html"%}
+              </div>
+              <div class="news">
+              <script type=text/javascript>
+                $(function(){
+                      $.ajax({
+                        url: '/latest_news',
+                        type: 'GET',
+                        data: {
+                           
+                        },
+                        success: relatedSuccess,
+                       dataType: 'html'
+                   });
+                   });
+                function relatedSuccess(data, textStatus, jqXHR)
+                {
+                  $('.news').html(data);
+                }
+                </script>
+              </div>
+              <div class="skycrapers1">
+                {% include "skyscrapers.html"%}
+              </div>
+            </div>
+        </div>
+      {% if pagination.links %}
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-7">
+          <div class="paging"><strong>Pages:</strong> &nbsp; {{pagination.links}}</div>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+      {% endif %}
+  </div>
+  </div>
+{% endblock %}

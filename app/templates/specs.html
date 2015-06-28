@@ -1,0 +1,422 @@
+{% extends "base.html" %}
+
+{% block js %}
+
+{% endblock %}
+<div class="left">                
+{% include "nav.html" %}
+</div>
+{% block meta %}
+<meta name="description" content="{{phone.Name}} {% if 'Android' in phone.OS %}Android{% endif %}{% if 'IOS' in phone.OS %}Apple{% endif %}{% if 'windows' in phone.OS %}Windows{% endif %} smartphone. Announced {{phone.Announced}} ">
+<meta name=keywords content="{{phone.Name}},{{phone.Brand}},{{phone.Name[phone.Name.find(' '):]}},GSM,mobile,phone,cellphone,information,info,specs,specification,opinion,review">
+<link rel="canonical" href="{{request.url}}">
+{% endblock %}
+
+{% block title %}
+{{phone.Name}} - Full phone specifications
+{% endblock %}
+
+{% block main %}
+<div class="from_top">
+    <div class="contentz">
+      <div class="row">
+            <div class="col-md-10">
+              <div class="top-ads">
+                {% include "top-ads.html"%}
+        </div>
+      </div>
+      </div>
+      <div class="row">
+            <div class="col-md-10">
+              <div class="top-ads"></div>
+        </div>
+      </div>
+        <div class="row">
+          <div class="name">{{phone.Name}}</div>
+            <div class="col-md-2">
+                <div class="left">
+                    <div class="pic">
+                      <img src="{{phone.Picture}}">
+                  </div>
+                    <div class="options">
+                      <table class="otable">
+                        {% if phone.Rotate %}
+                        <tr>
+                        <td>
+                      <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> <a href="#openModal">360° view</a>
+                        <div id="openModal" class="modalDialog"><div>
+                          <a href="#close" title="Close" class="close">Close</a>
+                            <embed src="{{phone.Rotate}}" width="500" height="500">
+                        </div>
+                      </div>
+                        </td>
+                        </tr>
+                        {% endif %}
+                      <tr>
+                        <td>
+                         <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <a href="../comments/{{phone.phoneId}}">Opinions</a>
+                      </td>
+                      </tr>
+                      <tr>
+                        <td>
+                       <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <a href="../compare/{{phone.phoneId}}">Compare</a>
+                      </td>
+                      </tr>
+                      <tr>
+                        <td>
+                         <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> <a href="../related/{{phone.brand}}">Related phones</a>
+                      </td>
+                      </tr>
+                        {% if phone.manual %}
+                      <tr>
+                        <td>
+                         <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <a href="{{phone.manual}}">Manual</a>
+                      </td>
+                    </tr>
+                        {% endif %}
+                    <tr>
+                        <td>
+                          <hr>
+                      </td>
+                    </tr>
+                      </table>
+                    </div>
+                    <div class="popularity">
+                      <p class= "ttle">Popularity</p>
+                      <hr>
+  <p>Daily Interest</p>
+                      <div class="progress">
+                      <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{phone.Popularity}};">
+    {{phone.Popularity}}
+  </div>
+                      </div>
+                    </div>
+                    <div class="votes">
+                      <p class= "ttle">Voting Results</p>
+                      <hr>
+  <p>Design</p>                      
+<div class="progress">
+  <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+  aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:{{phone.Design}};">
+    {{phone.Design}}
+  </div>
+</div>
+                      <hr>
+                      <p>Features</p>
+<div class="progress">
+  <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar"
+  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:{{phone.Feature}}">
+   {{phone.Feature}}
+  </div>
+</div>
+<p>Performance</p>
+<div class="progress">
+  <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
+  aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{phone.Performance}};">
+    {{phone.Performance}}
+  </div>
+</div>
+              </div>
+                    </div>
+          </div>
+            <div class="col-md-8">
+                <div class="bands"><img src="../static/img/brands/{{phone.Brand}}.gif"></div>
+                <table class="table">
+                    <tbody>
+                      <tr class="RowToClick">
+                        <th class="ttle">NETWORK</th>
+                        <td><p class="ttl">Technology</p> </td>
+                        <td class="nfo">{{phone.Technology}} </td>
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td><p class="ttl">2G bands</p>
+                        <td class="nfo">{{ phone.TwoG }}</td>
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">3G bands</td>
+                        <td class="nfo">{{ phone.ThreeG }}</td>
+                        </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">4G bands</td>
+                        <td class="nfo">{{ phone.FourG }}</td>
+                        </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Speed</td>
+                        <td class="nfo">{{ phone.Speed }}</td>
+                        </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">GPRS</td>
+                        <td class="nfo">{{ phone.GPRS }}</td>
+                        </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Edge</td>
+                        <td class="nfo">{{ phone.Edge }}</td>
+                    </tr>
+              </tbody>
+          </table>
+      <table class="table">
+                    <tbody>
+                      <tr>
+                        <th class="ttle">LAUNCHED</th>
+                        <td class="ttl">Announced</td>
+                        <td class="nfo">{{ phone.Announced }}</td>
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                         <td class="ttl">Status</td>
+                        <td class="nfo">{{ phone.Status }}</td>
+                      </tr>                                
+                      <tr>
+                        <th class="ttle">BODY</th>
+                        <td class="ttl">Dimension</td>
+                        <td class="nfo">{{ phone.Dimensions }}</td>
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Weight</td>
+                        <td class="nfo">{{ phone.Weight }}</td>
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">SIM</td>
+                        <td class="nfo">{{ phone.Sim }}</td>
+                      </tr>
+                      <tr>
+                        <th class="ttle">DISPLAY</th>
+                        <td class="ttl">Type</td>
+                        <td class"nfo">{{ phone.Type }}</td>
+                        </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Size</td>
+                        <td class"nfo">{{ phone.Size }}</td>
+                        </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Resolution</td>
+                        <td class"nfo">{{ phone.Resolution }}</td>
+                        </tr>
+                    <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Multitouch</td>
+                        <td class"nfo">{{ phone.Multitouch }}</td>
+                        </tr>
+                    <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Protection</td>
+                        <td class"nfo">{{ phone.Protection }}</td>
+                      </tr>
+                    <tr>
+                        <th class="ttle">PLATFORM</th>
+                        <td class="ttl">OS</td>
+                          <td class="nfo">{{ phone.OS }}</td>
+                      </tr>
+                    <tr>
+                      <th class="ttle"></th>
+                      <td class="ttl">Chipset</td>
+                      <td class="nfo">{{ phone.Chipset }}</td>
+                      </tr>
+                    <tr>
+                      <th class="ttle"></th>
+                      <td class="ttl">CPU</td>
+                      <td class="nfo">{{ phone.CPU }}</td>
+                      </tr>
+                    <tr>
+                      <th class="ttle"></th>
+                      <td class="ttl">GPU</td>
+                      <td class="nfo">{{ phone.GPU }}</td>
+                      </tr>
+                    <tr>
+                      <th><p class="ttle">MEMORY</p></th>
+                      <td class="ttl">Card slot</td>
+                      <td class="nfo">{{ phone.Card_slot }}</td>
+                  </tr>
+                    <tr>
+                      <th class="ttle"></th>
+                      <td class="ttl">Internal</td>
+                      <td class="nfo">{{ phone.Internal }}</td>
+                  </tr>
+                <tr>
+                <th class="ttle">CAMERA</th>
+                <td class="ttl">Primary</td>
+                <td class="nfo">{{ phone.Primary }}</td>
+              </tr>
+              <tr>
+                <th class="ttle"></th>
+                <td class="ttl">Features</td>
+                <td class="nfo">{{ phone.Features }}</td>
+              </tr>
+              <tr>
+                <th class="ttle"></th>
+                <td class="ttl">Video</td>
+                <td class="nfo">{{ phone.Video }}</td>
+              </tr>
+              <tr>
+                <th class="ttle"></th>
+                <td class="ttl">Secondary</td>
+                <td class="nfo">{{ phone.Secondary }}</td>
+              </tr>
+              <tr>
+                <th class="ttle">SOUND</th>
+                <td class="ttl">Alert types</td>
+                <td class="nfo">{{ phone.Alert_types }}</td>
+              </tr>
+              <tr>
+                <th class="ttle"></th>
+                <td class="ttl">Loudspeaker</td>
+                <td class="nfo">{{ phone.Loudspeaker }}</td>
+              </tr>
+              <tr>
+                <th class="ttle"></th>
+                <td class="ttl">3.5mm jack</td>
+                <td class="nfo">{{ phone.Jack }}<td>
+              </tr>
+              <tr>
+                <th class="ttle">COMMS</th>
+                <td class="ttl">WLAN</td>
+                <td class="nfo">{{ phone.WLAN }}</td>
+              </tr>
+              <tr>
+                <th class="ttle"></th>
+                <td class="ttl">Bluetooth</td>
+                <td class="nfo">{{ phone.Bluetooth }}<td>
+              </tr>
+              <tr>
+                <th class="ttle"></th>
+                <td class="ttl">GPS</td>
+                <td class="nfo">{{ phone.GPS }}<td>
+              </tr>
+              <tr>
+                <th class="ttle"></th>
+                <td class="ttl">NFC</td>
+                <td class="nfo">{{ phone.NFC }}<td>
+              </tr>
+              <tr>
+                <th class="ttle"></th>
+                <td class="ttl">Radio</td>
+                <td class="nfo">{{ phone.Radio }}<td>
+              </tr>
+              <tr>
+                <th class="ttle"></th>
+                <td class="ttl">USB</td>
+                <td class="nfo">{{ phone.USB }}<td>
+              </tr>
+              <tr>
+                        <th class="ttle">FEATURES</th>
+                        <td class="ttl">Sensors</td>
+						<td class="nfo">{{ phone.Sensors }}</td>
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Messaging</td>
+                        <td class="nfo">{{ phone.Messaging }}</td>
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Browser</td>
+                        <td class="nfo">{{ phone.Browser }}</td>
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Java</td>
+                        <td class="nfo">{{ phone.Java }}</td>
+                      </tr>
+                      <tr>
+                        <th class="ttle">BATTERY</th>
+                        <td class="ttl"></td>
+                        <td class="nfo">{{ phone.Battery }}</td>
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Stand-by</td>
+                        <td class="nfo">{{ phone.Stand_by }}</td>
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Talk time</td>
+                        <td class="nfo">{{ phone.Talk_time }}</td>
+                      </tr>
+                      <tr>
+                        <th><p class="ttle">MISC</p></th>
+                        <td class="ttl">Colors</td>
+                        <td class="nfo">{{ phone.Colors }}</td>
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">SAR US</td>
+                        <td class="nfo">{{ phone.SAR_US }}</td>
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">SAR EU</td>
+                        <td class="nfo">{{ phone.SAR_EU }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                <hr>
+              <div class="ct">{{phone.Name}} User opinion and review</div>
+              <hr style="color:black;">
+                  {% if comments %}
+                    {% for comment in comments[:4] %}
+              <div class="author"><p><strong><span class="glyphicon glyphicon-user"></span> {{ comment.author }}</strong> <span class="glyphicon glyphicon-flag" style="float:right; margin-right:30px;"> </span><span class="glyphicon glyphicon-thumbs-down" style="float:right;margin-right:35px;"></span></p></div>
+              <div class="comment"><p>{{ comment.body }}</p></div>
+              <div class="time"><p>{{ comment.created_at.strftime('%H:%M %Y-%m-%d') }}<a href="../replies/{{comment.id}}"></span><span class="glyphicon glyphicon-share"> reply</span></a></p></div>
+                    {{ comment.text }}
+                    {% if comment.replies %}
+                    {% for reply in comment.replies %}
+                      <div class="replies">
+                      <div class="author"><p><strong><span class="glyphicon glyphicon-user"></span> {{ reply.author }}</strong> <span class="glyphicon glyphicon-thumbs-up" style="float:right; margin-right:30px;"> </span><span class="glyphicon glyphicon-flag" style="float:right;margin-right:35px;"></span></p></div>
+              <div class="comment"><p>{{ reply.body }}</p></div>
+                        <div class="time"><p>{{ reply.created_at }}</div>
+                    {{ reply.text }}
+                        </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}  
+                    {% else %}
+                    <p>Be the first to comment on this phone<p>
+                    {% endif %}
+                      <div class="total"><p>Total User Opinions {{count}}</p></div>
+                      
+                      <div class="ct">
+                        <a href="../comment/{{phone.phoneId}}"><button class="btn btn-primary" name="comment">Post your opinion</button></a> <a href="../comments/{{phone.phoneId}}"><button class="btn btn-primary" name="comment">Read all opinions</button></a>
+                        </div>
+                      <hr>
+            </div>
+            <div class="col-md-2">
+              <div class="skycrapers">
+                {% include "skyscrapers.html"%}
+              </div>
+                
+                <div class="related">
+                  <script type=text/javascript>
+                $(function(){
+                      $.ajax({
+                        url: '/related',
+                        type: 'GET',
+                        data: {
+                           'brand' : '{{phone.Brand}}'
+                        },
+                        success: relatedSuccess,
+                       dataType: 'html'
+                   });
+                   });
+                function relatedSuccess(data, textStatus, jqXHR)
+                {
+                  $('.related').html(data);
+                }
+                  </script>
+              </div>
+              </div>
+            </div>
+        </div>
+</div>
+  </div>
+{% endblock %}

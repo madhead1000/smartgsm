@@ -1,0 +1,111 @@
+<aside>
+          <div id="sidebar"  class="nav-collapse ">
+             
+              <ul class="sidebar-menu" id="nav-accordion">
+              
+              	  <p class="centered"><img src="{{url_for('static', filename='img/ui-sam.jpg')}}" class="img-circle" width="60"></p>
+              	  <h5 class="centered">SmartGSM</h5>
+              	  	
+                  <li class="mt">
+                      <a {% if request.url == "/"%}class="active"{% endif %} href="../">
+                          <i class="fa fa-home"></i>
+                          <span>Home</span>
+                      </a>
+                  </li>
+
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="glyphicon glyphicon-phone"></i>
+                          <span>Top Brands</span>
+                      </a>
+                      <ul class="sub">
+                           <li {% if brand=="Samsung" %}  class="active" {% endif %} ><a  href="/phones/samsung">Samsung</a></li>
+ <li {% if brand=="Apple" %}  class="active" {% endif %} ><a  href="/phones/Apple">Apple</a></li>
+ <li {% if brand=="Microsoft" %}  class="active" {% endif %} ><a href="/phones/Microsoft">Microsoft</a></li>
+ <li {% if brand=="Nokia" %}  class="active" {% endif %} ><a href="/phones/Nokia">Nokia</a></li>
+ <li {% if brand=="Sony" %}  class="active" {% endif %} ><a href="/phones/Sony">Sony</a></li>
+ <li {% if brand=="LG" %}  class="active" {% endif %} ><a href="/phones/Lg">LG</a></li>
+ <li {% if brand=="HTC" %}  class="active" {% endif %} ><a href="/phones/HTC">HTC</a></li>
+ <li {% if brand=="Motorola" %}  class="active" {% endif %} ><a href="/phones/Motorola">Motorola</a></li>
+ <li {% if brand=="Huawei" %}  class="active" {% endif %} ><a href="/phones/Huawei">Huawei</a></li>
+ <li {% if brand=="BlackBerry" %}  class="active" {% endif %} ><a href="/phones/Blackberry">BlackBerry</a></li>
+ <li {% if brand=="Alcatel" %}  class="active" {% endif %} ><a href="/phones/Alcatel">Alcatel</a></li>
+ <li {% if brand=="Toshiba" %}  class="active" {% endif %} ><a href="/phones/Toshiba">Toshiba</a></li>
+ <li {% if brand=="Gigabyte" %}  class="active" {% endif %} ><a href="/phones/Gigabyte">Gigabyte</a></li>
+</li>
+ <li {% if brand=="BLU" %}  class="active" {% endif %} ><a href="/phones/BLU">BLU</a></li>
+                      </ul>
+                  </li>
+                
+                <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-desktop"></i>
+                          <span>Brands</span>
+                      </a>
+                      <ul class="sub">
+ <li {% if brand=="Lenovo" %}  class="active" {% endif %} ><a href="/phones/Lenovo">Lenovo</a></li>
+ <li {% if brand=="Acer" %}  class="active" {% endif %} ><a href="/phones/Acer">Acer</a></li>
+ <li {% if brand=="Asus" %}  class="active" {% endif %} ><a href="/phones/Asus">Asus</a></li>
+ <li {% if brand=="Alcatel" %}  class="active" {% endif %} ><a href="/phones/Alcatel">Alcatel</a></li>
+ <li {% if brand=="ZTE" %}  class="active" {% endif %} ><a href="/phones/ZTE">ZTE</a></li>
+ <li {% if brand=="Toshiba" %}  class="active" {% endif %} ><a href="/phones/Toshiba">Toshiba</a></li>
+ <li {% if brand=="Gigabyte" %}  class="active" {% endif %} ><a href="/phones/Gigabyte">Gigabyte</a></li>
+ <li {% if brand=="Pantech" %}  class="active" {% endif %} ><a href="/phones/Pantech">Pantech</a></li>
+ <li {% if brand=="BLU" %}  class="active" {% endif %} ><a href="/phones/BLU">BLU</a></li>
+                      </ul>
+                  </li>
+                <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-desktop"></i>
+                          <span>New Brands</span>
+                      </a>
+                      <ul class="sub">
+ <li {% if brand=="Xiaomi" %}  class="active" {% endif %} ><a href="/phones/Xiaomi">Xiaomi</a></li>
+ <li {% if brand=="Oppo" %}  class="active" {% endif %} ><a href="/phones/Oppo">Oppo</a></li>
+ <li {% if brand=="XOLO" %}  class="active" {% endif %} ><a href="/phones/Xolo">XOLO</a></li>
+ <li {% if brand=="Lava" %}  class="active" {% endif %} ><a href="/phones/Lava">Lava</a></li>
+ <li {% if brand=="Micromax" %}  class="active" {% endif %} ><a href="/phones/Micromax">Micromax</a></li>
+ <li {% if brand=="Spice" %}  class="active" {% endif %} ><a href="/phones/Spice">Spice</a></li>
+ <li {% if brand=="verykool" %}  class="active" {% endif %} ><a href="/phones/Verykool">verykool</a></li>
+ <li {% if brand=="Maxwest" %}  class="active" {% endif %} ><a href="/phones/Maxwest">Maxwest</a></li>
+ <li {% if brand=="Celkon" %}  class="active" {% endif %} ><a href="/phones/Celkon">Celkon</a></li>
+ <li {% if brand=="Gionee" %}  class="active" {% endif %} ><a href="/phones/Gionee">Gionee</a></li>
+ <li {% if brand=="vivo" %}  class="active" {% endif %} ><a href="/phones/Vivo">vivo</a></li>
+ <li {% if brand=="NIU" %}  class="active" {% endif %} ><a  href="/phones/NIUP">NIU</a></li>
+ <li {% if brand=="Yezz" %}  class="active" {% endif %} ><a  href="/phones/YEZZ">Yezz</a></li>
+ <li {% if brand=="Parla" %}  class="active" {% endif %} ><a  href="/phones/Parla">Parla</a></li>
+<li {% if brand=="Plum" %}  class="active" {% endif %} ><a  href="/phones/Plum">Plum</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-cogs"></i>
+                          <span>Tools</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="../compare/30472">Compare</a></li>
+                          <li><a  href="../battery">Battery Life Table</a></li>
+                          <li><a  href="../faq">FAQ</a></li>
+                        <li><a  href="../advertise">Advertise</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-shopping-cart"></i>
+                          <span>Shop</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="form_component.html">Buy Phones</a></li>
+                          <li><a  href="form_component.html">Sell Phones</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="../news" >
+                          <span class="glyphicon glyphicon-file" ></span>
+                          <span>News</span>
+                      </a>
+                  </li>
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>

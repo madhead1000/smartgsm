@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+
+{% block js %}
+{% endblock %}
+
+<div class="left">                
+{% include "nav.html" %}
+</div>
+{% block main %}
+<div class="from_top">
+<div class="contentz">
+  <div class="row">
+            <div class="col-md-10">
+              <div class="top-ads">
+                {% include "top-ads.html"%}
+              </div>
+        </div>
+  </div>
+          <div class="name">Contact us</div>	
+          <div class="row" style="margin-left:10px;">
+            <div class="col-md-8">
+              <hr>
+				<div class="text">
+
+<h3>We do appreciate your feedback</h3>
+
+<p>
+We will be glad to hear from you if:<br>
+- You have found a mistake in our phone specifications.<br>
+- You have info about a phone which we don't have in our database.<br>
+- You have found a broken link.<br>
+- You have a suggestion for improving GSMArena.com or you want to request a feature.<br>
+</p>
+
+<p>Before sending us an email, please keep in mind:<br>
+- We do not sell mobile phones.<br>
+- We do not know the price of any mobile phone in your country.<br>
+- We don't answer any "unlocking" related questions.<br>
+- We don't answer any "Which mobile should I buy?" questions.
+</p>
+
+<p>Please be sure to check out  <a href="../faq"><b>Video Site Tour</b></a> for any feature-related questions.<br><br>
+Please use the <a href="../tipus"><b>Tip us form</b></a> for any news story suggestions.
+</p>
+<p>&nbsp;</p>
+<p><b><script>document.write ("<a href=\"mailto:sup"+"port@gsmaren"+"a.com"+"\">")</script><script>document.write ("sup"+"port@gsmaren"+"a.com")</script></a></b></p>
+
+<p>&nbsp;</p>
+<h3>Advertising on Smartgsm.com</h3>
+Do you have an online mobile store? Are you interested in advertising on our site? GSMArena.com is accessed by millions of unique visitors daily, and is guaranteed to help boost your sales. <br> 
+<b><a href="../advertise">Click here to read more</a></b><br>&nbsp;</p>
+</div>
+  </div>
+<div class="col-md-4">
+ <div class="right-ads-squares">
+              {% include "ads-squares.html"%}
+              </div>
+              <div class="skycrapers1">
+                {% include "skyscrapers.html"%}
+              </div>
+    </div>
+</div>
+</div>
+{% endblock %}

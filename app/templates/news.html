@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block js %}
+{% endblock %}
+
+{% block title %}
+{{news.Name}} - SmartGSM.com news
+{% endblock %}
+
+{% block meta%}
+<meta property="og:title" content="{{news.Name}}"/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="{{request.url}}"/>
+<meta property="og:image" content="{{news.Picture}}"/>
+<meta property="og:site_name" content="SmartGSM.com"/>
+<meta property="og:description" content="{{new[:new.find('.')].replace('"', "'")|safe}}"/>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+{% endblock %}
+<div class="left">                
+{% include "nav.html" %}
+</div>
+{% block main %}
+<div class="from_top">
+    <div class="contentz">
+      <div class="row">
+            <div class="col-md-10">
+              <div class="top-ads">
+                {% include "top-ads.html"%}
+              </div>
+        </div>
+      </div>
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-8">
+        <div class="nttl">News</div>
+      <div class="news_name">{{news.Name}}</div>
+      <div class="news_date">June 14 2015 | <a href="../news/comments/{{news.newsid}}">comments({{count_comments(new.newsid)}})</a> | <a href="../news/comment/{{news.newsid}}">Post your comment</a></div>
+      <div class="tags">Tags: {% if 'Android' in news.Content %}Android{% endif %}{% if 'IOS' in news.Content %}Apple{% endif %}{% if 'windows' in news.Content %}Windows{% endif %}</div>
+     {{news.Content|safe}}
+    <div>
+        </div>
+      </div>
+      <div class="well">
+  <button class="fb-like" data-width="100px" data-layout="box_count" data-show-faces="true"></button>
+</div>
+  
+<script type="text/javascript">
+  window.fbAsyncInit = function () {
+    FB.init({ appId: '969627023070249', cookie: true, xfbml: true, oauth: true });
+
+    // *** here is my code ***
+    if (typeof facebookInit == 'function') {
+        facebookInit();
+    }
+};
+
+(function(d){
+    var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+    js = d.createElement('script'); js.id = id; js.async = true;
+    js.src = "//connect.facebook.net/en_US/all.js";
+    d.getElementsByTagName('head')[0].appendChild(js);
+}(document));
+  
+function fb_share() {
+  FB.ui( {
+    method: 'feed',
+    name: "{{news.Name}}",
+    link: "{{request.url}}",
+    picture: "{{news.Picture}}",
+    caption: "Smartgsm.com",
+    description: "{{new}}"
+  }, function( response ) {
+    // do nothing
+  } );
+}
+
+$(document).ready(function(){
+  $('button.fb-like').on( 'click', fb_share );
+});
+</script>
+      <hr>
+      <div class="ct">{{news.Name}} Reader Comments</div>
+              <hr style="color:black;">
+                  {% if comments %}
+                    {% for comment in comments[:4] %}
+              <div class="author"><p><strong><span class="glyphicon glyphicon-user"></span> {{ comment.author }}</strong> <span class="glyphicon glyphicon-flag" style="float:right; margin-right:30px;"> </span><span class="glyphicon glyphicon-thumbs-down" style="float:right;margin-right:35px;"></span></p></div>
+              <div class="comment"><p>{{ comment.body }}</p></div>
+              <div class="time"><p>{{ comment.created_at.strftime('%H:%M %Y-%m-%d') }}<a href="replies/comment.id"></span><span class="glyphicon glyphicon-share"> reply</span></a></p></div>
+                    {{ comment.text }}
+                    {% if comment.replies %}
+                    {% for reply in comment.replies %}
+                      <div class="replies">
+                      <div class="author"><p><strong><span class="glyphicon glyphicon-user"></span> {{ reply.author }}</strong> <span class="glyphicon glyphicon-thumbs-up" style="float:right; margin-right:30px;"> </span><span class="glyphicon glyphicon-flag" style="float:right;margin-right:35px;"></span></p></div>
+              <div class="comment"><p>{{ reply.body }}</p></div>
+                        <div class="time"><p>{{ reply.created_at }}</div>
+                    {{ reply.text }}
+                        </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}  
+                    {% else %}
+                    <p>Be the first to comment on this phone<p>
+                    {% endif %}
+                      <div class="total"><p>Total User Opinions {{count}}</p></div>
+                      
+                      <div class="ct">
+                        <a href="../news/comment/{{news.newsid}}"><button class="btn btn-primary" name="comment">Post your opinion</button></a> <a href="../news/comments/{{news.newsid}}"><button class="btn btn-primary" name="comment">Read all opinions</button></a>
+                        </div>
+                      <hr>
+            </div>
+      <div class="col-md-3">
+        <div class="right-ads-squares">
+           {% include "ads-squares.html"%}
+        </div>
+        <div class="skycrapers1">
+          {% include "skyscrapers.html"%}
+        </div>
+</div>     
+</div>
+</div>
+{% endblock %}

@@ -2,8 +2,16 @@
 # Flask
 # ----------------------
 flask
-
-
+flask-script
+WTForms
+mongoengine
+flask_mongoengine
+flask-sqlalchemy
+psycopg2
+flask-Login
+flask-OpenID
+Flask-Migrate
+flask-mail
 # ----------------------
 # Testing
 # ----------------------

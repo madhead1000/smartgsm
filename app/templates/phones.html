@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+
+{% block js %}
+{% endblock %}
+
+<div class="left">                
+{% include "nav.html" %}
+</div>
+{% block main %}
+<div class="from_top">
+<div class="contentz">
+    <div class="row">
+            <div class="col-md-10">
+              <div class="top-ads">
+                {% include "top-ads.html"%}
+              </div>
+        </div>
+      </div>
+    <div class="name">{{brand}} phones</div>
+    <div class="row">
+      <div class="col-md-10">
+          <div class="brands"><img src="../static/img/brands/{{brand}}.gif"></div>
+        <div class="makers">
+          <ul>
+          {% for phone in phones %}
+          <a href="../specs/{{phone[0]}}"><li><img src="{{phone[2]}}" title="{{phone[1]}}{% if 'Android' in phone[3] %} Android phone.{% endif %}{% if 'Windows' in phone[3] %} Windows phone.{% endif %} Announced {{phone[4]}}. {{phone[4][:phone[4].find(',')]}} {{ phone[5][:phone[5].find(',')]}} camera, {% if phone[6] %}Wifi,{% endif %} {% if phone[7] %}GPS,{% endif %} {% if phone[8] %}Bluetooth{% endif %}"><strong>{{phone[1]}}</a></strong>
+          {% endfor %}
+        </ul>
+            </div>
+        
+          </div>
+          <div class="col-md-2">
+        <div class="skycrapers1">
+          {% include "skyscrapers.html"%}
+        </div>
+        </div>
+        </div>
+  {% if pagination.links %}
+        <div class="row" style="margin-left:30px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-9">
+          <div class="paging"><strong>Pages:</strong> &nbsp; {{pagination.links}}</div>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+  {% endif %}
+  </div>
+</div>
+{% endblock %}

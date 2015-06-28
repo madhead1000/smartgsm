@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block js %}
+
+{% endblock %}
+
+<div class="left">                
+{% include "nav.html" %}
+</div>
+{% block main %}
+<div class="from_top">
+    <div class="contentz">
+      <div class="row">
+            <div class="col-md-10">
+              <div class="top-ads">
+                {% include "top-ads.html"%}
+              </div>
+        </div>
+      </div>
+      <div class="name">{{phone.Name}} - user opinions and reviews</div>
+      <div class="bands"><img src="../static/img/brands/{{phone.Brand}}.gif"></div>
+        <div class="row">
+            <div class="col-md-2">
+                <div class="left">
+                    <div class="pic">
+                      <img src="{{phone.Picture}}">
+                  </div>
+                    <div class="options">
+                      <table class="otable">
+                        <tr>
+                        <td>
+                          <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span><a href="../specs/{{phone.phoneId}}"> Specifications</a>
+                          </td>
+                        </tr>
+                        <tr>
+                        <td>
+                          {% if phone.Rotate %}
+                      <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> <a href="#openModal">360° view</a>
+                        <div id="openModal" class="modalDialog"><div>
+                          <a href="#close" title="Close" class="close">Close</a>
+                            <embed src="{{phone.Rotate}}" width="500" height="500">
+                          {% endif %}
+                        </div>
+                      </div>
+                        </td>
+                        </tr>
+                      <tr>
+                        <td>
+                       <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <a href="../compare/{{phone.phoneId}}">Compare</a>
+                      </td>
+                      </tr>
+                      <tr>
+                        <td>
+                         <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> <a href="../related/{{phone.phoneId}}">Related phones</a>
+                      </td>
+                      </tr>
+                        {% if phone.manual %}
+                      <tr>
+                        <td>
+                         <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <a href="{{phone.manual}}">Manual</a>
+                      </td>
+                    </tr>
+                        {% endif %}
+                    <tr>
+                        <td>
+                          <hr>
+                      </td>
+                    </tr>
+                      </table>
+                    </div>
+                    <div class="popularity">
+                      <p class= "ttle">Popularity</p>
+                      <hr>
+  <p>Daily Interest</p>
+                      <div class="progress">
+                      <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{phone.Popularity}};">
+    {{phone.Popularity}}
+  </div>
+</div>
+                    </div>
+                    <div class="votes">
+                      <p class= "ttle">Voting Results</p>
+                      <hr>
+  <p>Design</p>                      
+<div class="progress">
+  <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+  aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:{{phone.Design}};">
+    {{phone.Design}}
+  </div>
+</div>
+                      <hr>
+                      <p>Features</p>
+<div class="progress">
+  <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar"
+  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:{{phone.Feature}}">
+   {{phone.Feature}}
+  </div>
+</div>
+<p>Performance</p>
+<div class="progress">
+  <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
+  aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{phone.Performance}};">
+    {{phone.Performance}}
+  </div>
+</div>
+              </div>
+                    </div>
+          </div>
+            <div class="col-md-8">
+                <div>&nbsp;</div>
+                <hr>
+              <div class="ct">{{phone.Name}} User opinion.</div>
+              <hr style="color:black;">
+                  {% if comments %}
+                    {% for comment in comments %}
+              <div class="author"><p><strong><span class="glyphicon glyphicon-user"></span> {{ comment[4] }}</strong> <span class="glyphicon glyphicon-thumbs-up" style="float:right; margin-right:30px;"> </span><span class="glyphicon glyphicon-flag" style="float:right;margin-right:35px;"></span></p></div>
+              <div class="comment"><p>{{ comment[3] }}</p></div>
+              <div class="time"><p>{{ comment[2] }}<a href="../replies/{{comment[0]}}">reply</a></p></div>
+                    {{ comment.text }}
+                    {% if comment[5] %}
+                    {% for reply in comment[5] %}
+                      <div class="replies">
+                      <div class="author"><p><strong><span class="glyphicon glyphicon-user"></span> {{ reply[3] }}</strong> <span class="glyphicon glyphicon-thumbs-up" style="float:right; margin-right:30px;"> </span><span class="glyphicon glyphicon-flag" style="float:right;margin-right:35px;"></span></p></div>
+              <div class="comment"><p>{{ reply[2] }}</p></div>
+                        <div class="time"><p>{{ reply[1] }}</div>
+                    {{ reply.text }}
+                        </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}  
+                    {% else %}
+                    <p>Be the first to comment on this phone<p>
+                    {% endif %}
+                      <div class="total"><p>Total User Opinions {{count}}</p></div>
+                      
+                      <div class="ct">
+                        <a href="../comment/{{phone.phoneId}}"><button class="btn btn-primary" name="comment">Post your opinion</button></a>
+                        </div>
+                      <hr>
+            </div>
+            <div class="col-md-2">
+                <div class="skycrapers1">
+                  {% include "skyscrapers.html"%}
+                </div>
+          </div>
+        </div>
+      {% if pagination.links %}
+       <div class="row" style="margin-left:200px; margin-right:30px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-9">
+          <div class="paging"><strong>Pages:</strong> &nbsp; {{pagination.links}}</div>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      {% endif %}
+</div>
+  </div>
+{% endblock %}

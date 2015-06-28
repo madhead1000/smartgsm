@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+
+{% block js %}
+{% endblock %}
+
+<div class="left">
+{% include "nav.html" %}
+</div>
+{% block main %}
+<div class="from_top">
+<div class="contentz">
+  <div class="row">
+            <div class="col-md-10">
+              <div class="top-ads">
+                {% include "top-ads.html"%}
+        </div>
+  </div>
+    </div>
+  <div class="ads" style="margin-left:80px;">Advertising</div> 
+            <div class="row">
+              <div class="col-md-1">
+            </div>
+            <div class="col-md-7">
+              <div class="namee">Interested in advertising at Smartgsm.com?</div>	
+				<div class="sub-hl">
+				Read further. Or check our Alexa rating <a href="http://www.alexa.com/siteinfo/smartgsm.com" target="_blank">here</a>.
+              </div>
+              <hr>
+<div class="text">
+
+<p>smartgsm.com is one of the most comprehensive and up-to-date mobile phone information resources. We offer our visitors some unique features, which keep them returning again and again. We receive every day dozens of emails with price inquires and even orders from visitors, although it is clearly stated that smart is not a store.</p>					  
+</p>
+
+
+<p><b>Special offers for internet stores</b><br><br>
+<table class="st-table full-width" width="680" border="0" cellspacing="0" cellpadding="0" bgcolor="#dddddd">
+
+		<tr>
+		  <td>&nbsp;</td>
+		  <td align="center"><b>What is included</b></td>
+		  <td align="center"><b>Price</b></td>
+		</tr>
+		<tr>
+		  <td><b>Premium<br>package</b></td>
+		  <td>
+- 2,000,000 <a href="#" onClick="popUp('i/adv_768.gif');"> banner (728x90 pixels)</a> impressions<br>
+- 2,000,000 <a href="#" onClick="popUp('i/adv_125.gif');">button (125x125 pixels)</a> impressions<br>
+- <a href="#" onClick="popUp('i/adv_text.gif');">Text links</a> on the phone pages<br>
+</td>
+		  <td align="center"><script>document.write ("<a href=\"mailto:are"+"na@gsmaren"+"a.com?subject=Premium%20Package"+"\">")</script>Email us for<br> price and availability</a></td>
+		</tr> 
+		<tr>
+		  <td><b>Ultimate<br>package</b></td>
+		  <td>
+- 2,000,000 <a href="#" onClick="popUp('i/adv_768.gif');"> banner (728x90 pixels)</a> impressions<br>
+- 2,000,000 <a href="#" onClick="popUp('i/adv_125.gif');">button (125x125 pixels)</a> impressions<br>
+- 1,000,000 <a href="#" onClick="popUp('i/adv_sky.gif');">skyscraper (120x600 pixels)</a> impressions<br>
+- <a href="#" onClick="popUp('i/adv_text.gif');">Text links</a> on the phone pages<br>		  
+		  </td>
+		  <td align="center"><script>document.write ("<a href=\"mailto:are"+"na@gsmaren"+"a.com?subject=Ultimate%20Package"+"\">")</script>Email us for<br> price and availability</a></td>
+		</tr>
+
+</table>
+
+<p>&nbsp;</p>
+
+<p><b>Other options</b><br>
+You need advertising, but what you get with our standard offers is not quite what you are looking for? If you need more aggressive advertising or if you want to advertise on a specific part
+of GSMArena.com, or if you want to offer us some kind of affiliation just send us an <script>document.write ("<a href=\"mailto:are"+"na@gsmaren"+"a.com?subject=Other%20Advertising%20Options"+"\">")</script>email</a> <br />&nbsp;
+</p>
+</div>
+</div>
+<div class="col-md-4">
+ <div class="right-ads-squares">
+              {% include "ads-squares.html"%}
+              </div>
+              <div class="news">
+              <script type=text/javascript>
+                $(function(){
+                      $.ajax({
+                        url: '/latest_news',
+                        type: 'GET',
+                        data: {
+                           
+                        },
+                        success: relatedSuccess,
+                       dataType: 'html'
+                   });
+                   });
+                function relatedSuccess(data, textStatus, jqXHR)
+                {
+                  $('.news').html(data);
+                }
+                </script>
+              </div>
+              <div class="skycrapers1">
+                {% include "skyscrapers.html"%}
+              </div>
+    </div>
+</div>
+{% endblock %}

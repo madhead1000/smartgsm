@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block js %}
+
+{% endblock %}
+
+<div class="left">                
+{% include "nav.html" %}
+</div>
+{% block main %}
+<div class="from_top">
+    <div class="contentz">
+      <div class="row">
+            <div class="col-md-10">
+              <div class="top-ads">
+                {% include "top-ads.html"%}
+              </div>
+        </div>
+      </div>
+      <div class="row">
+            <div class="col-md-10">
+              <div class="top-ads"></div>
+        </div>
+      </div>
+        <div class="row">
+            <div class="col-md-1">
+              </div>
+            <div class="col-md-7">
+              <div class="nttl">NEWS - READER COMMENTS</div>
+              <div class="news_name">{{news.Name}}</div>
+              <div class="row">
+              <div class="col-md-2">
+              <img src="{{news.Picture}}" style="width:100px; height:130px;"/>
+              </div>
+              <div class="col-md-10">
+              <div>{{ new[:200] }} </div>
+              </div>
+              </div>
+                <hr>
+              <div class="ct">{{news.Name}} User opinion.</div>
+              <hr style="color:black;">
+                  {% if comments %}
+                    {% for comment in comments[:10] %}
+              <div class="author"><p><strong><span class="glyphicon glyphicon-user"></span> {{ comment[4] }}</strong> <span class="glyphicon glyphicon-thumbs-up" style="float:right; margin-right:30px;"> </span><span class="glyphicon glyphicon-flag" style="float:right;margin-right:35px;"></span></p></div>
+              <div class="comment"><p>{{ comment[3] }}</p></div>
+              <div class="time"><p>{{ comment[2] }}<a href="../replies/{{comment.id}}">reply</a></p></div>
+                    {{ comment.text }}
+                    {% if comment[5] %}
+                    {% for reply in comment[5] %}
+                      <div class="replies">
+                      <div class="author"><p><strong><span class="glyphicon glyphicon-user"></span> {{ reply[2] }}</strong> <span class="glyphicon glyphicon-thumbs-up" style="float:right; margin-right:30px;"> </span><span class="glyphicon glyphicon-flag" style="float:right;margin-right:35px;"></span></p></div>
+              <div class="comment"><p>{{ reply[3] }}</p></div>
+                        <div class="time"><p>{{ reply[1] }}</div>
+                    {{ reply.text }}
+                        </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}  
+                    {% else %}
+                    <p>Be the first to comment on this phone<p>
+                    {% endif %}
+                      <div class="total"><p>Total User Opinions {{count}}</p></div>
+                      
+                      <div class="ct">
+                        <a href="../comment/{{news[0]}}"><button class="btn btn-primary" name="comment">Post your opinion</button></a>
+                        </div>
+                      <hr>
+            </div>
+            <div class="col-md-4">
+              <div class="right-ads-squares">
+                {% include "ads-squares.html"%}
+              </div>
+              <div class="news">
+              <script type=text/javascript>
+                $(function(){
+                      $.ajax({
+                        url: '/latest_news',
+                        type: 'GET',
+                        data: {
+                           'brand' : '{{news[1]}}'
+                        },
+                        success: relatedSuccess,
+                       dataType: 'html'
+                   });
+                   });
+                function relatedSuccess(data, textStatus, jqXHR)
+                {
+                  $('.news').html(data);
+                }
+                </script>
+              </div>
+              <div class="skycrapers1">
+                {% include "skyscrapers.html"%}
+              </div>
+            </div>
+        </div>
+      {% if pagination.links %}
+      <div class="row" style="margin-left:10x; margin-right:200px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-9">
+          <div class="paging"><strong>Pages:</strong> &nbsp; {{pagination.links}}</div>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      {% endif %}
+</div>
+  </div>
+{% endblock %}

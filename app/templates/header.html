@@ -1,0 +1,49 @@
+<script src="/static/js/jquery.js"></script>
+  <script src="/static/js/ajax.js"></script>
+<link rel="stylesheet" href="/static/css/custom.css">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" rel="home" href="#">SmartGSM</a>
+	</div>
+	
+	<div class="collapse navbar-collapse">
+		
+		<ul class="nav navbar-nav">
+			<li><a href="/">Home</a></li>
+			<li><a href="/news">News</a></li>
+			<li><a href="/Tools">Compare</a></li>
+            <li><a href="/Tools">Tools</a></li>
+            <li><a href="/Tools">Contact us</a></li>
+			<li class="dropdown">
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+                <li class="divider"></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+		</ul>
+        <div class="col-sm-3 col-md-3 pull-right">
+        <a href="facebook.com"><img src="{{url_for('static', filename='img/facebook.png')}}"></img></a><a href="facebook.com"><img src="{{url_for('static', filename='img/twitter.png')}}"></img></a> <a href="facebook.com"><img src="{{url_for('static', filename='img/google.png')}}"></img></a> <a href="facebook.com"><img src="{{url_for('static', filename='img/rss.png')}}"></img></a> 
+    </div>
+		<div class="col-sm-3 col-md-3 pull-right">
+		<form class="navbar-form" role="search">
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Search" name="search" id="search" autocomplete="off" style="height:30px;">
+      <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+      <div id="search-results">
+      </div>
+      </div>
+      </form>
+		</div>
+	</div>
+</div>
+</div>

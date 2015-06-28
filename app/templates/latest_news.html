@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="/static/css/custom.css">
+<div class="tag">
+<p class="news-latest">Latest News</p>
+</div>
+{% if latest_news.count > 0 %}
+{% for news in latest_news[:4] %}
+<li class="news-latest"><a href="/news/{{news.newsid}}">{{news.Name}}</a></li>
+{% else %}
+None to Show
+{% endfor %}
+{% endif %}

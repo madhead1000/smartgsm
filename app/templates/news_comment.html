@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block js %}
+
+{% endblock %}
+
+<div class="left">                
+{% include "nav.html" %}
+</div>
+{% block main %}
+<div class="from_top">
+    <div class="contentz">
+      <div class="row">
+            <div class="col-md-10">
+              <div class="top-ads">
+                {% include "top-ads.html"%}
+            </div>
+        </div>
+      </div>
+        <div class="row">
+            <div class="col-md-1">
+          </div>
+            <div class="col-md-7">
+                {% if news %}
+                  <div class="nttl"> NEWS - POST YOUR COMMENT</div>
+                  <div class="news_name">{{news[3]}}</div>
+                {% else %}
+                  <div class="nttl">News - REPLY TO POST</div>
+                  <div class="news_name">Reply to {{comment.author}}'s post</div>
+                {% endif %}
+              <div class="row">
+              <div class="col-md-2">
+                {% if news %}
+              <img src="{{news[1]}}" style="width:100px; height:130px;"/>
+                {% else %}
+                <p>Reply to -></p>
+                {% endif %}
+              </div>
+              <div class="col-md-10">
+                {% if new %}
+              <div>{{ new[:new.find('.')] }} </div>
+                {% else %}
+                <div>{{comment.body}}</div>
+                {% endif %}
+              </div>
+              </div>
+                <hr>
+              <p>Posting rules</p>
+              <li>English only</li>
+              <li>Please no foul language, be polite and use common sense</l>
+<li>No expressions of hatred based on race/ethnicity, sex, sexual orientation, disability, and religion</li>
+          <li>No SPAM, no commercial advertising, no referal programs of any kind</li>
+          <li>No bashing - deliberately and repeatedly bashing the same brand</li>
+          <li>No trolling - deliberately antagonizing other brand/model users</i>
+          <li>Read before you post. Search before you post. Your question is probably already answered</li>
+          <li>Posting your contact info such as phone number or email is not a good idea. We won't be responsible for any unwanted consequences.</li>
+      <li>If you don't follow the above rules, your post will be probably deleted.</li>
+      <hr>
+  <div class="comment_area">
+    <form method="POST" action="">
+      {{ form.hidden_tag() }}
+    <p>Your nickname (optional)</p>
+    <p>{{form.author(size=50)}}</p>
+      {% if news %}
+    <p>Your comment about {{news[4]}}</p>
+      {% endif %}
+      <p>{{form.body(rows=10,cols=80)}}</p>
+      {{form.submit}}
+    </form>
+      </div>
+      <div class="disclaimer">
+      While the administrators and moderators of this site will attempt to remove or edit any generally objectionable material as quickly as possible, it is impossible to review every posting. Therefore you acknowledge that all posts made to these forums express the views and opinions of the author and not the administrators, moderators or webmaster (except for posts by these people) and hence will not be held liable.You agree not to post any abusive, obscene, vulgar, slanderous, hateful, threatening, sexually-oriented or any other material that may violate any applicable laws. Doing so may lead to you being immediately and permanently banned (and your service provider being informed). The IP address of all posts is recorded and part of it will be publised along with the post. You agree that the webmaster, administrator and moderators of this site have the right to remove, edit, move or close any topic at any time should they see fit.
+      </div>
+</div>
+            <div class="col-md-4">
+              <div class="right-ads-squares">
+                {% include "ads-squares.html"%}
+              </div>
+              <div class="news">
+              <script type=text/javascript>
+                $(function(){
+                      $.ajax({
+                        url: '/latest_news',
+                        type: 'GET',
+                        data: {
+                        {% if news %}
+                           'brand' : '{{news[1]}}'
+                           {% endif %}
+                        },
+                        success: relatedSuccess,
+                       dataType: 'html'
+                   });
+                   });
+                function relatedSuccess(data, textStatus, jqXHR)
+                {
+                  $('.news').html(data);
+                }
+                </script>
+              </div>
+             {% include "skyscrapers.html"%}
+
+              </div>
+                
+            </div>
+        </div>
+</div>
+  </div>
+{% endblock %}

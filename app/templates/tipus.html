@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+
+{% block js %}
+{% endblock %}
+
+<div class="left">                
+{% include "nav.html" %}
+</div>
+{% block main %}
+<div class="from_top">
+<div class="contentz">
+				<div id="mid-col">
+          <div class="name">Tip us</div>	
+          <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-8">
+              <hr>
+
+<div id="mid-col">
+<h1>So you've got a hot story to share?</h1>
+
+
+	
+
+<p>&nbsp;</p>
+
+<div class="text">
+<p>We're always on the lookout for good stories, no matter if it's some leaked product info, a new invention, a nice piece of mobile software, a software update for your favorite phone or stuff, regarding the market availability and pricing of any mobile phone. We're also happy to accept any multimedia material you may have - a good place for sharing images is <a href="http://imgur.com" target="_blank">imgur.com</a> and for videos - there's always <a href="http://www.youtube.com" target="_blank">YouTube</a>, you know.</p>
+
+<p>This is not an all-purpose "Contact Us" page. Please DO NOT send us questions via this form, we won't be able to answer those. Also this is not the place to suggest any changes to the website. </p>
+<br class="clear" />
+</div>
+<div class="comment_area">
+    <form method="POST" action="">
+      {{ form.hidden_tag() }}
+    <p>Your Name (optional)</p>
+    <p>{{form.name(size=50)}}</p>
+      <p>Your Email (optional)</p>
+    <p>{{form.email(size=50)}}</p>
+      <p>Your Subject)</p>
+    <p>{{form.subject(size=50)}}</p>
+    <p>Share</p>
+      <p>{{form.body(rows=10,cols=80)}}</p>
+      <div style="float:right; margin-right:30px;">{{form.submit}}</div>
+    </form>
+            </div>
+
+
+</div>
+</div>
+</div>
+{% endblock %}

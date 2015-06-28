@@ -1,0 +1,29 @@
+<div id="footer">
+ <div class="footer-logo">
+     <img src="{{url_for('static', filename='img/logo.jpg')}}" />
+    </div>
+    <div id="footmenu">
+<p>
+<a href="/">Home</a>
+<a href="/news">News</a>
+<a href="/reviews">Reviews</a>
+  {% if phone %}
+<a href="/compare/{{phone.phoneId}}">Compare</a>
+  {% endif %}
+<a href="/faq">FAQ</a>
+
+<a href="rss-news-reviews.php3" class="rss-icon">RSS feed</a></li>
+<a target="_blank" href="http://www.facebook.com/pages/GSMArenacom/189627474421?sk=wall&amp;filter=2" class="fb-icon">Facebook</a>
+<a target="_blank" href="http://twitter.com/gsmarena_com" class="tw-icon">Twitter</a>
+
+</p>
+<p>
+&copy; 2016 
+<a href="../contact">Contact us</a>
+<a href="../advertise">Advertising</a>
+<a href="../privacy">Privacy</a> 
+<a href="../terms">Terms of use</a>
+			
+</p>			
+  </div>
+</div>

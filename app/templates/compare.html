@@ -1,0 +1,585 @@
+{% extends "base.html" %}
+
+{% block js %}
+
+{% endblock %}
+
+<div class="left">                
+{% include "nav.html" %}
+</div>
+{% block main %}
+<div class="from_top">
+    <div class="contentz">
+       <div class="row">
+            <div class="col-md-10">
+              <div class="top-ads">
+                {% include "top-ads.html"%}
+              </div>
+        </div>
+      </div>
+        
+        <div class="row" style="margin-left:10px;">
+            <div {% if phones %}class="col-md-12"{% else %}class="col-md-10" {% endif %}>
+                <div class="news_name" style="margin-bottom:20px;">Compare</div>
+          <div class="row">
+        <div class="col-md-6">
+          <div class="cname">{{phone.Name}}</div>
+          <hr style="margin-right:20px;">
+          <div class="row">
+           <div class="col-md-5">
+             <center>
+          <div class="pics"><img src="{{phone.Picture}}"></div>
+             </center>
+            </div>
+             <div class="col-md-4">
+              <hr>
+				        <div class="options1">
+                <table class="otable">
+                  <tr>
+                <td>
+                 <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> <a href="../../specs/{{phone.phoneId}}">Specifications</a>
+                </td>
+                </tr>
+                {% if phone.Rotate %}
+                <tr>
+                <td>
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> <a href="#openModal">360° view</a>
+                <div id="openModal" class="modalDialog"><div>
+                  <a href="#close" title="Close" class="close">Close</a>
+                  <embed src="{{phone.Rotate}}" width="500" height="500">
+                </div>
+                </div>
+                </td>
+                </tr>
+                {% endif %}
+                <tr>
+                <td>
+                 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <a href="../../comments/{{phone.phoneId}}">Opinions</a>
+                </td>
+                </tr>
+                <tr>
+                <td>
+                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <a href="../../comment/{{phone.phoneId}}">Comment</a>
+                </td>
+                </tr>
+                {% if phone.manual %}
+                <tr>
+                <td>
+                 <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <a href="{{phone.manual}}">Manual</a>
+                </td>
+                </tr>
+                {% endif %}
+                <tr>
+                <td>
+                  <hr>
+                </td>
+                </tr>
+                </table>
+              </div>
+            </div>
+            </div>
+          <hr style="margin-right:20px;">
+          {% if phones%}
+          <script type=text/javascript>
+          $(function(){
+          $('#phone1').keyup(function(){
+          $.ajax({
+          type: "POST",
+          url: "/compare_search1",
+          data: {
+          'compare_search_text' : $('#phone1').val(),
+          'id1' : {{phones.phoneId}},
+          },
+          success: cphoneSuccess,
+          dataType: 'html'
+          });
+          });
+          });
+          function cphoneSuccess(data, textStatus, jqXHR)
+          {
+          $('#compare-result1').html(data);
+          }
+          </script>
+          <div class="replace_with">
+          <p><strong>Replace with</strong></p>
+          <input name="phone1" id="phone1" type="text">
+          <input type="Submit" id="sPhone1">
+          <div id="compare-result1"></div>
+          </div>
+            {% endif %}
+          </div>
+          {% if phones%} 
+          <div class="col-md-6">
+          <div class="cname">{{phones.Name}}</div>
+            <hr style="margin-right:20px;">
+            <div class="row">
+           <div class="col-md-5">
+            <div class="pics"><img src="{{phones.Picture}}"></div>
+            </div>
+            <div class="col-md-4">
+              <hr>
+				        <div class="options1">
+                <table class="otable">
+                  <tr>
+                <td>
+                 <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> <a href="../../specs/{{phones.phoneId}}">Specifications</a>
+                </td>
+                </tr>
+                {% if phones.Rotate %}
+                <tr>
+                <td>
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> <a href="#openModal">360° view</a>
+                <div id="openModal" class="modalDialog"><div>
+                  <a href="#close" title="Close" class="close">Close</a>
+                  <embed src="{{phone.Rotate}}" width="500" height="500">
+                </div>
+                </div>
+                </td>
+                </tr>
+                {% endif %}
+                <tr>
+                <td>
+                 <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <a href="../../comments/{{phones.phoneId}}">Opinions</a>
+                </td>
+                </tr>
+                <tr>
+                <td>
+                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> <a href="../../comment/{{phones.phoneId}}">Comment</a>
+                </td>
+                </tr>
+                {% if phone.manual %}
+                <tr>
+                <td>
+                 <span class="glyphicon glyphicon-book" aria-hidden="true"></span> <a href="{{phones.manual}}">Manual</a>
+                </td>
+                </tr>
+                {% endif %}
+                <tr>
+                <td>
+                  <hr>
+                </td>
+                </tr>
+                </table>
+              </div>
+            </div>
+            </div>
+            <hr style="margin-right:20px;">
+            <script type=text/javascript>
+            $(function(){
+            $('#phone2').keyup(function(){
+            $.ajax({
+            type: "POST",
+            url: "/compare_search2",
+            data: {
+            'compare_search_text' : $('#phone2').val(),
+            'id' : {{phone.phoneId}},
+            },
+            success: cphone2Success,
+            dataType: 'html'
+            });
+            });
+            });
+            function cphone2Success(data, textStatus, jqXHR)
+            {
+            $('#compare-result2').html(data);
+            }
+            </script>
+            <div class="replace_with">
+            <p><strong>Replace with</strong></p>
+          <input name="phone2" id="phone2" type="text">
+          <input type="Submit" id="sPhone2">
+          <div id="compare-result2"></div>
+          </div>
+            </div>
+          {% else %}
+          <div class="col-md-6">
+            <div class="compare_with">
+            <p><strong>Compare with</strong></p>
+          <input name="model" id="model" type="text">
+          <input type="Submit" id="cSearch">
+          <div id="search-result"></div>
+          </div>
+            </div>
+          {% endif %}
+      </div>
+                <div {% if phones %}class="col-md-11"{% else %}class="col-md-9" {% endif %}>
+                <table class="table" style="margin-top:15px; margin-right:20px;">
+                    <tbody>
+                      <tr>
+                        <th class="ttle">NETWORK</th>
+                        <td class="ttl">Technology</td>
+                        <td class="nfo">{{phone.Technology}} </td>
+                        {% if phones %}
+                        <td class="nfo">{{phones.Technology}} </td>
+                        
+                        {% endif %}
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td><p class="ttl">2G bands</p>
+                        <td class="nfo">{{ phone.TwoG }}</td>
+                        {% if phones %}
+                        <td class="nfo">{{phones.TwoG}} </td>
+                        {% endif %}
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">3G bands</td>
+                        <td class="nfo">{{ phone.ThreeG }}</td>
+                        {% if phones %}
+                        <td class="nfo">{{phones.ThreeG}} </td>
+                        {% endif %}
+                        </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">4G bands</td>
+                        <td class="nfo">{{ phone.FourG }}</td>
+                        {% if phones %}
+                        <td class="nfo">{{phones.FourG}} </td>
+                        {% endif %}
+                        </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Speed</td>
+                        <td class="nfo">{{ phone.Speed }}</td>
+                        {% if phones %}
+                        <td class="nfo">{{phones.Speed}} </td>
+                        {% endif %}
+                        </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">GPRS</td>
+                        <td class="nfo">{{ phone.GPRS }}</td>
+                        {% if phones %}
+                        <td class="nfo">{{phones.GPRS}} </td>
+                        {% endif %}
+                        </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Edge</td>
+                        <td class="nfo">{{ phone.Edge }}</td>
+                        {% if phones %}
+                        <td class="nfo">{{phones.Edge}} </td>
+                        {% endif %}
+                    </tr>
+                      <tr>
+                        <th class="ttle">LAUNCHED</th>
+                        <td class="ttl">Announced</td>
+                        <td class="nfo">{{ phone.Announced }}</td>
+                        {% if phones %}
+                        <td class="nfo">{{phones.Announced}} </td>
+                        {% endif %}
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                         <td class="ttl">Status</td>
+                        <td class="nfo">{{ phone.Status }}</td>
+                        {% if phones %}
+                        <td class="nfo">{{phones.Status}} </td>
+                        {% endif %}
+                      </tr>                                
+                      <tr>
+                        <th class="ttle">BODY</th>
+                        <td class="ttl">Dimension</td>
+                        <td class="nfo">{{ phone.Dimensions }}</td>
+                        {% if phones %}
+                        <td class="nfo">{{phones.Dimensions}} </td>
+                        {% endif %}
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Weight</td>
+                        <td class="nfo">{{ phones.Weight }}</td>
+                       {% if phones %}
+                        <td class="nfo">{{phones.Weight}} </td>
+                        {% endif %}
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">SIM</td>
+                        <td class="nfo">{{ phones.Sim }}</td>
+                        {% if phones %}
+                        <td class="nfo">{{phones.Sim}} </td>
+                        {% endif %}
+                      </tr>
+                      <tr>
+                        <th class="ttle">DISPLAY</th>
+                        <td class="ttl">Type</td>
+                        <td class"nfo">{{ phone.Type }}</td>
+                        {% if phones %}
+                        <td class="nfo">{{phones.Type}} </td>
+                        {% endif %}
+                        </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Size</td>
+                        <td class"nfo">{{ phone.Size }}</td>
+                        {% if phones %}
+                        <td class="nfo">{{phones.Size}} </td>
+                        {% endif %}
+                        </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Resolution</td>
+                        <td class"nfo">{{ phone.Resolution }}</td>
+                        {% if phones %}
+                        <td class="nfo">{{phones.Resolution}} </td>
+                        {% endif %}
+                        </tr>
+                    <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Multitouch</td>
+                        <td class"nfo">{{ phone.Multitouch }}</td>
+                      {% if phones %}
+                        <td class="nfo">{{phones.Multitouch}} </td>
+                        {% endif %}
+                        </tr>
+                    <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Protection</td>
+                        <td class"nfo">{{ phone.Protection }}</td>
+                      {% if phones %}
+                        <td class="nfo">{{phones.Protection}} </td>
+                        {% endif %}
+                      </tr>
+                    <tr>
+                        <th class="ttle">PLATFORM</th>
+                        <td class="ttl">OS</td>
+                          <td class="nfo">{{ phone.OS }}</td>
+                      {% if phones %}
+                        <td class="nfo">{{phones.OS}} </td>
+                        {% endif %}
+                      </tr>
+                    <tr>
+                      <th class="ttle"></th>
+                      <td class="ttl">Chipset</td>
+                      <td class="nfo">{{ phone.Chipset }}</td>
+                      {% if phones %}
+                        <td class="nfo">{{phones.Chipset}} </td>
+                        {% endif %}
+                      </tr>
+                    <tr>
+                      <th class="ttle"></th>
+                      <td class="ttl">CPU</td>
+                      <td class="nfo">{{ phone.CPU }}</td>
+                      {% if phones %}
+                        <td class="nfo">{{phones.CPU}} </td>
+                        {% endif %}
+                      </tr>
+                    <tr>
+                      <th class="ttle"></th>
+                      <td class="ttl">GPU</td>
+                      <td class="nfo">{{ phone.GPU }}</td>
+                      {% if phones %}
+                        <td class="nfo">{{phones.GPU}} </td>
+                        {% endif %}
+                      </tr>
+                    <tr>
+                      <th><p class="ttle">MEMORY</p></th>
+                      <td class="ttl">Card slot</td>
+                      <td class="nfo">{{ phone.Card_slot }}</td>
+                      {% if phones %}
+                        <td class="nfo">{{phones.Card_slot}} </td>
+                        {% endif %}
+                  </tr>
+                    <tr>
+                      <th class="ttle"></th>
+                      <td class="ttl">Internal</td>
+                      <td class="nfo">{{ phone.Internal }}</td>
+                      {% if phones %}
+                        <td class="nfo">{{phones.Internal}} </td>
+                        {% endif %}
+                  </tr>
+                <tr>
+                <th class="ttle">CAMERA</th>
+                <td class="ttl">Primary</td>
+                <td class="nfo">{{ phone.Primary }}</td>
+                  {% if phones %}
+                   <td class="nfo">{{phones.Primary}} </td>
+                  {% endif %}
+              </tr>
+              <tr>
+                <th class="ttle"></th>
+                <td class="ttl">Features</td>
+                <td class="nfo">{{ phone.Features }}</td>
+                {% if phones %}
+                <td class="nfo">{{phones.Features}} </td>
+                {% endif %}
+              </tr>
+              <tr>
+                <th class="ttle"></th>
+                <td class="ttl">Video</td>
+                <td class="nfo">{{ phone.Video }}</td>
+                {% if phones %}
+                 <td class="nfo">{{phones.Video}} </td>
+                {% endif %}
+              </tr>
+              <tr>
+                <th class="ttle"></th>
+                <td class="ttl">Secondary</td>
+                <td class="nfo">{{ phone.Secondary }}</td>
+                {% if phones %}
+                  <td class="nfo">{{phones.Secondary}} </td>
+               {% endif %}
+              </tr>
+              <tr>
+                <th class="ttle">SOUND</th>
+                <td class="ttl">Alert types</td>
+                <td class="nfo">{{ phone.Alert_types }}</td>
+                {% if phones %}
+                  <td class="nfo">{{phones.Alert_types}} </td>
+               {% endif %}
+              </tr>
+               <tr>
+                <th class="ttle">SOUND</th>
+                <td class="ttl">Loud Speaker</td>
+                <td class="nfo">{{ phone.Loud_speaker }}</td>
+                {% if phones %}
+                  <td class="nfo">{{phones.Loud_speaker}} </td>
+               {% endif %}
+               </tr>
+               <tr>
+                <th class="ttle"></th>
+                <td class="ttl">3.5mm jack</td>
+                <td class="nfo">{{ phone.Jack }}</td>
+                {% if phones %}
+                  <td class="nfo">{{phones.Jack}} </td>
+               {% endif %}
+               </tr>
+               <tr>
+                 <th class="ttle">COMMS</th>
+                 <td class="ttl">WLAN</td>
+						<td class="nfo">{{ phone.WLAN }}</td>
+                {% if phones %}
+                  <td class="nfo">{{phones.WLAN}} </td>
+               {% endif %}
+                      </tr>
+               <tr>
+                 <th class="ttle"></th>
+                 <td class="ttl">Bluetooth</td>
+						<td class="nfo">{{ phone.Bluetooth }}</td>
+                {% if phones %}
+                  <td class="nfo">{{phones.Bluetooth}} </td>
+               {% endif %}
+                      </tr>
+              <tr>
+                 <th class="ttle"></th>
+                 <td class="ttl">GPS</td>
+						<td class="nfo">{{ phone.GPS }}</td>
+                {% if phones %}
+                  <td class="nfo">{{phones.GPS}} </td>
+               {% endif %}
+                      </tr>
+             <tr>
+                 <th class="ttle"></th>
+                 <td class="ttl">NFC</td>
+						<td class="nfo">{{ phone.NFC }}</td>
+                {% if phones %}
+                  <td class="nfo">{{phones.NFC}} </td>
+               {% endif %}
+                      </tr>
+               <tr>
+                 <th class="ttle"></th>
+                 <td class="ttl">Radio</td>
+						<td class="nfo">{{ phone.Radio }}</td>
+                {% if phones %}
+                  <td class="nfo">{{phones.Radio}} </td>
+               {% endif %}
+                      </tr>       
+              <tr>
+                 <th class="ttle"></th>
+                 <td class="ttl">USB</td>
+						<td class="nfo">{{ phone.USB }}</td>
+                {% if phones %}
+                  <td class="nfo">{{phones.USB}} </td>
+               {% endif %}
+                      </tr>        
+              <tr>
+                 <th class="ttle">FEATURES</th>
+                 <td class="ttl">Sensors</td>
+						<td class="nfo">{{ phone.Sensors }}</td>
+                {% if phones %}
+                  <td class="nfo">{{phones.Sensors}} </td>
+               {% endif %}
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Messaging</td>
+                        <td class="nfo">{{ phone.Messaging }}</td>
+                        {% if phones %}
+                  <td class="nfo">{{phones.Messaging}} </td>
+               {% endif %}
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Browser</td>
+                        <td class="nfo">{{ phone.Browser }}</td>
+                        {% if phones %}
+                  <td class="nfo">{{phones.Browser}} </td>
+               {% endif %}
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Java</td>
+                        <td class="nfo">{{ phone.Java }}</td>
+                        {% if phones %}
+                  <td class="nfo">{{phones.Java}} </td>
+               {% endif %}
+                      </tr>
+                      <tr>
+                        <th class="ttle">BATTERY</th>
+                        <td class="ttl"></td>
+                        <td class="nfo">{{ phone.Battery }}</td>
+                        {% if phones %}
+                  <td class="nfo">{{phones.Battery}} </td>
+               {% endif %}
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Stand-by</td>
+                        <td class="nfo">{{ phone.Stand_by }}</td>
+                        {% if phones %}
+                  <td class="nfo">{{phones.Stand_by}} </td>
+               {% endif %}
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">Talk time</td>
+                        <td class="nfo">{{ phone.Talk_time }}</td>
+                        {% if phones %}
+                  <td class="nfo">{{phones.Talk_time}} </td>
+               {% endif %}
+                      </tr>
+                      <tr>
+                        <th><p class="ttle">MISC</p></th>
+                        <td class="ttl">Colors</td>
+                        <td class="nfo">{{ phone.Colors }}</td>
+                        {% if phones %}
+                  <td class="nfo">{{phones.Colors}} </td>
+               {% endif %}
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">SAR US</td>
+                        <td class="nfo">{{ phone.SAR_US }}</td>
+                        {% if phones %}
+                  <td class="nfo">{{phones.SAR_US}} </td>
+               {% endif %}
+                      </tr>
+                      <tr>
+                        <th class="ttle"></th>
+                        <td class="ttl">SAR EU</td>
+                        <td class="nfo">{{ phone.SAR_EU }}</td>
+                        {% if phones %}
+                  <td class="nfo">{{phones.SAR_EU}} </td>
+               {% endif %}
+                      </tr>
+                    </tbody>
+                  </table>
+                <hr>
+            </div>
+
+          </div>
+</div>
+</div>
+{% endblock %}

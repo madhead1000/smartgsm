@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="/static/css/custom.css">
+<div class="tag">
+<p class="autocomplete">Search results for {{search_text}}</p>
+</div>
+{% if phone.count > 0 %}
+{% for phone in phone[:4] %}
+  <div class="row">
+   <div class="col-md-4">
+    <div class="autocomplete"><a href="../{{phone.phoneId}}/{{id1}}"><img src="{{phone.Picture}}"></a></div>
+    </div>
+     <div class="col-md-8">
+      <div class="autocomplete"><a href="../{{phone.phoneId}}/{{id1}}">{{phone.Name}}</a></div>
+    </div>
+  </div>
+{% else %}
+None to Show
+{% endfor %}
+{% endif %}

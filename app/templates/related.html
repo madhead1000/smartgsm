@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="/static/css/custom.css">
+<div class="tag">
+<p class="autocomplete">Related {{brand}} phones</p>
+</div>
+{% if phone.count > 0 %}
+{% for phone in phone[:4] %}
+  <div class="row">
+   <div class="col-md-4">
+    <div class="autocomplete"><a href="/specs/{{phone.phoneId}}"><img src="{{phone.Picture}}"></a></div>
+    </div>
+     <div class="col-md-8">
+      <div class="autocomplete"><a href="/specs/{{phone.phoneId}}">{{phone.Name}}</a></div>
+    </div>
+  </div>
+{% else %}
+None to Show
+{% endfor %}
+{% endif %}
